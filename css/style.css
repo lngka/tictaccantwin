@@ -47,7 +47,8 @@ tr:nth-of-type(3) td{
 }
 
 .card-block {
-  padding-top : 2em;
+  padding-top : 1.2em;
+  padding-bottom: 0.5em;
 }
 
 #annoucement{
@@ -65,4 +66,8 @@ tr:nth-of-type(3) td{
 #xButton,
 #oButton{
   width: 100%;
+}
+
+.display-3{
+  font-size: 4rem;
 }
