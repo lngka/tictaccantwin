@@ -139,7 +139,7 @@ function updateDisplay(){
   lost.innerHTML = GAME.lostCount;
   draw.innerHTML = GAME.drawCount;
 }
-
+ 
 function drawGame(){
   announce("It's a draw!");
   GAME.drawCount += 1;
