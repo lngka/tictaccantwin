@@ -16,6 +16,7 @@ table {
 td {
   width: 33.333%;
   border: 6px solid #555;
+  cursor: pointer;
 }
 td:after {
   content: '';
