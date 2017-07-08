@@ -3,14 +3,15 @@ var GAME = {
           [null, null, null],
           [null, null, null]],
   isOver: checkGameOver,
+  lostCount: 0,
+  drawCount: 0,
   maxPlayerSymbol: "X",
   minPlayerSymbol: "O",
   maxPlayer: true,
   minPlayer: false,
-  AIPlayer: null,    // either minPlayer or maxPlayer
-  humanPlayer: null, // either minPlayer or maxPlayer
-  winner: null,
-  currentTurn: null // true(maxPlayer) or false(minPlayer)
+  AIPlayer: false,    // either minPlayer or maxPlayer
+  humanPlayer: true, // either minPlayer or maxPlayer
+  currentTurn: true // true(maxPlayer) or false(minPlayer)
 };
 
 /*
@@ -126,7 +127,7 @@ function findEmptyCells(board) {
 * find best move
 * @parameter player is the AIPlayer
 */
-function recurseMinimax(board, player, depth) {
+function minimax(board, player, depth) {
   depth++;
   var possibleScores = [];
   var possibleMoves = [];
@@ -147,7 +148,7 @@ function recurseMinimax(board, player, depth) {
     board[cellRow][cellCol] = player;
 
     // simulate: opponent of someone claims the next empty cell
-    let score = recurseMinimax(board, !player, depth)[1];
+    let score = minimax(board, !player, depth)[1];
 
     // remember the end score for this empty cell
     possibleScores.push(score);
@@ -172,14 +173,4 @@ function recurseMinimax(board, player, depth) {
     let move = possibleMoves[index];
     return [move, smallestScore];
   }
-}
-
-
-
-/*
-* user controls
-*/
-
-function announce(string){
-  document.getElementById("annoucement").innerHTML = string;
 }

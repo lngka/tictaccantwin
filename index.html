@@ -13,14 +13,21 @@
   <body>
     <div class="container">
       <div id="HUD" class="row">
-        <div class="col text-center">
+        <div class="col"></div>
+        <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4 text-center">
           <h1 class="display-3">Tic Tac Toe:</h1>
           <h1>Can't Win Edition</h1>
-          <a href="#" id="xButton"class="btn btn-danger">X</a>
-          <a href="#" id="oButton"class="btn btn-danger">O</a>
-          <a href="#" id="resetButton"class="btn btn-danger">Reset</a>
-          <p id="annoucement"> </p>
+          <div class="card">
+            <div class="card-block">
+              <span>|Lost: <span id="lost">0</span></span>
+              <span>|Draw: <span id="draw">0</span>|</span>
+              <a href="#" id="retryButton" class="btn btn-secondary">Retry</a>
+              <a href="#" id="resetButton" class="btn btn-danger" data-toggle="modal" data-target="#myModal">&#x21BB;</a>
+              <p id="annoucement">hiddenjust cant</p>
+            </div>
+          </div>
         </div>
+        <div class="col"></div>
       </div>
       <div class="row">
         <div id="boardWrapper" class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4">
@@ -43,6 +50,30 @@
           </table>
         </div>
       </div>
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Chose Your Mark</h5>
+            </div>
+            <div class="modal-body text-center">
+              <div class="row">
+                <div class="col">
+                  <a href="#" id="xButton" class="btn btn-danger" data-dismiss="modal">X go first</a>
+                </div>
+                <div class="col">
+                  <a href="#" id="oButton" class="btn btn-danger" data-dismiss="modal">O go second</a>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
     </div>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

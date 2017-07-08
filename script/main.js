@@ -1,7 +1,6 @@
 /*
 * allow AI to plays at game start
 */
-
 function STARTGAME(){
   // sanity check, if it's noone's turn then return immediately
   if (GAME.currentTurn == null)
@@ -14,7 +13,6 @@ function STARTGAME(){
 /*
 * AI calculate the best move and actually take the move
 */
-
 function AIMoves() {
   // sanity check, if it's not AI turn, return immediately
   if (GAME.currentTurn != GAME.AIPlayer)
@@ -25,7 +23,7 @@ function AIMoves() {
   var depth = 0;
   var board = GAME.board.slice();
   var player = GAME.AIPlayer;
-  bestMove =  recurseMinimax(board, player, depth)[0];
+  bestMove =  minimax(board, player, depth)[0];
 
   // claiming...
   var bestRow = bestMove[0];
@@ -46,9 +44,9 @@ function AIMoves() {
     GAME.currentTurn = "null";
     var winner = checkWin(GAME.board)[1];
     if (winner === GAME.AIPlayer)
-      announce("You lost");
+      loseGame();
     else
-      tieGame();
+      drawGame();
   } else {
     GAME.currentTurn = GAME.humanPlayer;
   }
@@ -91,7 +89,7 @@ function AIFirstMoves() {
   if (GAME.AIPlayer == GAME.minPlayer) {
     node.classList.add(GAME.minPlayerSymbol);
   }
-  
+
   // let the human plays
   GAME.currentTurn = GAME.humanPlayer;
 }
@@ -99,7 +97,6 @@ function AIFirstMoves() {
 /*
 * human makes move and hand over the turn
 */
-
 function humanMove(row, col) {
   // if node is not empty, return immediately
   if (GAME.board[row][col] != null)
@@ -126,13 +123,38 @@ function humanMove(row, col) {
     if (winner === GAME.humanPlayer)
       announce("You won...how??");
     else
-      tieGame();
+      drawGame();
   } else { // game goes on
     GAME.currentTurn = GAME.AIPlayer;
     AIMoves();
   }
 }
 
-function tieGame(){
-  announce("It's a draw");
+/*
+* showing result to the human
+*/
+function updateDisplay(){
+  var lost = document.getElementById('lost');
+  var draw = document.getElementById('draw');
+  lost.innerHTML = GAME.lostCount;
+  draw.innerHTML = GAME.drawCount;
 }
+
+function drawGame(){
+  announce("It's a draw!");
+  GAME.drawCount += 1;
+  updateDisplay();
+}
+
+function loseGame(){
+  announce("You lost!");
+  GAME.lostCount += 1;
+  updateDisplay();
+}
+
+/*
+* prompt human to choose symbol at page load
+*/
+$(window).on('load',function(){
+  $('#myModal').modal('show');
+});

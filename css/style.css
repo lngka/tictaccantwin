@@ -46,12 +46,23 @@ tr:nth-of-type(3) td{
   background-position: center;
 }
 
+.card-block {
+  padding-top : 2em;
+}
+
 #annoucement{
   color: black;
-  font-weight: bold;
+  font-weight: lighter;
   font-size: 2rem;
-  display: block;
-  background-color: white;
-  position:relative;
-  margin: auto;
+  opacity: 0;
+  line-height: 2rem;
+  transform: translateY(5px);
+  text-align: center;
+  margin: 0;
+  transition: all 0.5s ease;
+}
+
+#xButton,
+#oButton{
+  width: 100%;
 }
